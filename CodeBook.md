@@ -16,69 +16,6 @@ Notes:
 - Features are normalized and bounded within [-1,1].
 - Each feature vector is a row on the text file.
 
-## Tidy 1 Data
-### Input Files
-* activity_labels.txt   - links the class labels with their activity name
-
-* features.txt  -   list of all features
-
-* subject_train.txt -   row identifies the subject who performed the activity for each window sample, range is from 1 to 30, training set
-
-* X_train.txt    -   sensor data, training set
-
-* y_train.txt   -   activity data, training set
-
-* subject_test.txt  -   row identifies the subject who performed the activity for each window sample, range is from 1 to 30, test set
-
-* X_test.txt    -   sensor data, test set
-
-* y_test.txt    -   activity data, test set
-
-### Output File
-* tidy1_data.txt (described below)
-
-#### Variables
-* ActivityName  -   activities performed by person (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING)
-
-* SubjectCode   -   identification code for subject who performed the activity for each window sample (range is from 1 to 30)
-
-* tBodyAcc.mean...X -   body acceleration signal, mean value, x-axis
-
-* tBodyAcc.mean...Y -   body acceleration signal, mean value, y-axis
-
-* tBodyAcc.mean...Z -   body acceleration signal, mean value, z-axis
-
-* tBodyAcc.std...X  -   body acceleration signal, standard deviation, x-axis
-
-* tBodyAcc.std...Y  -   body acceleration signal, standard deviation, y-axis
-
-* tBodyAcc.std...Z  -   body acceleration signal, standard deviation, z-axis
-
-#### Transformations
-##### Training Data
-* create descriptive feature column names with r-acceptable naming convention and append to sensor data
-
-* merge descriptive activity names/labels to activity activity data (ActivityName field)
-
-* combine subject identification code to sensor data (SubjectCode field)
-
-* combine activity data to sensor data
-
-##### Test Data
-* create descriptive feature column names with r-acceptable naming convention and append to sensor data
-
-* merge descriptive activity names/labels to activity activity data (ActivityName field)
-
-* combine subject identification code to sensor data (SubjectCode field)
-
-* combine activity data to sensor data
-
-##### Complete Data
-* combine training data and test data into one set
-
-* output file (tidy1_data.txt)
-
-
 
 ## Tidy 2 Data
 ### Input Files
@@ -102,21 +39,58 @@ Notes:
 * tidy2_data.txt (described below)
 
 #### Variables
+The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc...XYZ and tGyro...XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc...XYZ and tGravityAcc...XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
+
+Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk...XYZ and tBodyGyroJerk...XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
+
+Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc...XYZ, fBodyAccJerk...XYZ, fBodyGyro...XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals). 
+
+These signals were used to estimate variables of the feature vector for each pattern:  
+'...XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
+
+##### Mean Values
+* tBodyAcc.mean...XYZ   (example: tBodyAcc...X.Mean for x-axis signal)
+* tGravityAcc.mean...XYZ
+* tBodyAccJerk.mean...XYZ
+* tBodyGyro.mean...XYZ
+* tBodyGyroJerk.mean...XYZ
+* tBodyAccMag.mean...Mean
+* tGravityAccMag.mean
+* tBodyAccJerkMag.mean
+* tBodyGyroMag.mean
+* tBodyGyroJerkMag.mean
+* fBodyAcc.mean...XYZ
+* fBodyAccJerk.mean...XYZ
+* fBodyGyro.mean...XYZ
+* fBodyAccMag.mean
+* fBodyAccJerkMag.mean
+* fBodyGyroMag.mean
+* fBodyGyroJerkMag.mean
+
+##### Standard Deviation
+* tBodyAcc.std...XYZ   (example: tBodyAcc.std...X for x-axis signal)
+* tGravityAcc.std...XYZ
+* tBodyAccJerk.std...XYZ
+* tBodyGyro.std...XYZ
+* tBodyGyroJerk.std...XYZ
+* tBodyAccMag.std
+* tGravityAccMag.std
+* tBodyAccJerkMag.std
+* tBodyGyroMag.std
+* tBodyGyroJerkMag.std
+* fBodyAcc.std...XYZ
+* fBodyAccJerk.std...XYZ
+* fBodyGyro.std...XYZ
+* fBodyAccMag.std
+* fBodyAccJerkMag.std
+* fBodyGyroMag.std
+* fBodyGyroJerkMag.std
+
+##### Labels
 * ActivityName  -   activities performed by person (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING)
 
 * SubjectCode   -   identification code for subject who performed the activity for each window sample (range is from 1 to 30)
 
-* tBodyAcc.mean...X.Mean -   body acceleration signal, mean value, x-axis, average by activity and subject
-
-* tBodyAcc.mean...Y.Mean -   body acceleration signal, mean value, y-axis, average by activity and subject
-
-* tBodyAcc.mean...Z.Mean -   body acceleration signal, mean value, z-axis, average by activity and subject
-
-* tBodyAcc.std...X.Mean  -   body acceleration signal, standard deviation, x-axis, average by activity and subject
-
-* tBodyAcc.std...Y.Mean  -   body acceleration signal, standard deviation, y-axis, average by activity and subject
-
-* tBodyAcc.std...Z.Mean  -   body acceleration signal, standard deviation, z-axis, average by activity and subject
 
 #### Transformations
 ##### Training Data

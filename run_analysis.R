@@ -95,22 +95,24 @@ all_data <- rbind(train_all_data, test_all_data)
 #output
 #tidy data 1: mean and standard deviation values for all axis by activity type
 #subset sensor data with activity and subject variables
-tidy1_data <- all_data[c('ActivityName',
-                         'SubjectCode',
-                         'tBodyAcc.mean...X',
-                         'tBodyAcc.mean...Y',
-                         'tBodyAcc.mean...Z',
-                         'tBodyAcc.std...X',
-                         'tBodyAcc.std...Y',
-                         'tBodyAcc.std...Z'
-)]
+tidy1_cnames <- grep('.mean\\.|.std\\.', 
+                     names(all_data), 
+                     value = TRUE
+)
+
+tidy1_cnames <- c('ActivityName',
+                  'SubjectCode',
+                  tidy1_cnames
+)
+
+tidy1_data <- all_data[tidy1_cnames]
 
 #-----
 #write tidy data to file
-write.table(x = tidy1_data,
-            file = 'tidy1_data.txt',
-            row.names = FALSE
-)
+# write.table(x = tidy1_data,
+#             file = 'tidy1_data.txt',
+#             row.names = FALSE
+# )
 
 #----------
 #tidy data 2: average of each variable for each activity and each subject
@@ -125,7 +127,7 @@ tidy2_cnames <- paste(names(tidy2_data[, -which(names(tidy2_data) ==
                                                 c('ActivityName', 'SubjectCode')
                                             )]
                       ),
-                      '.Mean',
+                      # '.Mean',
                       sep = ''
 )
 
