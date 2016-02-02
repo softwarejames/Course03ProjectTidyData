@@ -49,7 +49,7 @@ These signals were used to estimate variables of the feature vector for each pat
 '...XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
 
 ##### Mean Values
-* tBodyAcc.mean...XYZ   (example: tBodyAcc...X.Mean for x-axis signal)
+* tBodyAcc.mean...XYZ   (example: tBodyAcc.mean...X for x-axis signal)
 * tGravityAcc.mean...XYZ
 * tBodyAccJerk.mean...XYZ
 * tBodyGyro.mean...XYZ
